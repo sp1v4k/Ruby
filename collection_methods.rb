@@ -72,12 +72,29 @@ homes =[
 #
 #puts home_41_dollars.name
 
-sorted_homes = []
+#sorted_homes = []
+#
+#sorted_homes = homes.sort do |home1, home2|
+#  home1.price <=> home2.price
+#end
+#
+#sorted_homes.each do |hm|
+#  puts "#{hm.name} in #{hm.city}\n Price: #{hm.price} a night"
+#end
 
-sorted_homes = homes.sort do |home1, home2|
-  home1.price <=> home2.price
+#reduce method: takes an array and return a single value
+#now with out reduce
+
+total_capacity = 0.0
+
+homes.each do |hm|
+  total_capacity = total_capacity + hm.capacity
 end
 
-sorted_homes.each do |hm|
-  puts "#{hm.name} in #{hm.city}\n Price: #{hm.price} a night"
+puts total_capacity / homes.length
+
+total_capacity = homes.reduce(0.0) do |sum, hm|
+  sum + hm.capacity
 end
+
+puts total_capacity / homes.length 
