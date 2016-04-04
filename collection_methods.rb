@@ -42,3 +42,15 @@ puts cities
 homes.each_with_index do |hm, index|
   puts "#{hm.name} is home number: #{index + 1}"
 end
+
+#select collector method: filter the object array and creates a new one. Do not touch original. The block return true or false given an item.
+
+san_juan_homes = []
+san_juan_homes = homes.select do |hm|
+  #keeps hm if city is San Juan
+  hm.city == "San Juan"
+end
+
+san_juan_homes.each do |hm|
+  puts "#{hm.name} in #{hm.city}\n Price: #{hm.price} a night"
+end
