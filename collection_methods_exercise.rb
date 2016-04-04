@@ -36,10 +36,6 @@ def menu
   puts "(6) FIND HOME BY PRICE"
 end
 
-menu
-homes = []
-get_home_data
-
 def get_home_data
   puts "Name? "
   name = gets.chomp
@@ -57,4 +53,13 @@ def get_home_data
   price = gets.chomp
   system("clear")
   menu
+end
+
+
+menu
+homes = []
+option = gets.chomp
+if option == 1
+  get_home_data
+  homes << Home.new(name, city, capacity, price)
 end
