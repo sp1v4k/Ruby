@@ -1,17 +1,15 @@
 require "pry"
 
-def Directory
-  def initialize(homes)
-    @homes = homes
-  end
+#def Directory
+#  def initialize(homes)
+#    @homes = homes
+#  end
+#
+#  def add_home
+#  end
+#end
 
-  def add_home
-
-  end
-
-end
-
-def Home
+class Home
     attr_reader :name, :city, :capacity, :price
 
     def initialize(name, city, capacity, price)
@@ -36,7 +34,18 @@ def menu
   puts "(6) FIND HOME BY PRICE"
 end
 
-def get_home_data
+key = nil
+homes = []
+name = nil
+city = nil
+capacity = 0
+price = 0
+
+menu
+$option = gets.chomp
+
+case $option
+when "1"
   puts "Name? "
   name = gets.chomp
   system("clear")
@@ -53,13 +62,20 @@ def get_home_data
   price = gets.chomp
   system("clear")
   menu
-end
-
-
-menu
-homes = []
-option = gets.chomp
-if option == 1
-  get_home_data
-  homes << Home.new(name, city, capacity, price)
+  homes.push(Home.new(name, city, capacity, price))
+when "2"
+  homes.each do |hm|
+    puts "#{hm.name} #{hm.city} #{hm.capacity} #{hm.price}"
+  end
+when "3"
+  puts "Option 3"
+when "4"
+  puts "Option 4"
+when "5"
+  puts "Option 5"
+when "6"
+  puts "Option 6"
+else
+  puts "Wrong selection! Press any key to continue."
+  key = gets.chomp
 end
