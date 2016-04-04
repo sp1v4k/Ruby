@@ -36,3 +36,9 @@ puts names
 cities = []
 cities = homes.map { |hm| hm.city }
 puts cities
+
+#each_with_index: same as each but the block recieves a second parameter, the index
+
+homes.each_with_index do |hm, index|
+  puts "#{hm.name} is home number: #{index + 1}"
+end
