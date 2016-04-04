@@ -18,8 +18,21 @@ homes =[
   Home.new("Ariel's place", "San Juan", 4, 49),
 ]
 
+#collection index
+#each
 homes.each do |hm|
   puts "#{hm.name} in #{hm.city}\n Price: #{hm.price} a night"
 end
 
-#another cool way to block: homes.each { |hm| puts hm.name  }
+
+names = []
+
+#new array creation from Object array elements
+homes.each { |hm| names << hm.name  }
+puts names
+
+#map method
+#it is normal to do it with map method
+cities = []
+cities = homes.map { |hm| hm.city }
+puts cities
