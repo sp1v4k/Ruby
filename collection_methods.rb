@@ -19,7 +19,7 @@ homes =[
 ]
 
 homes.each do |hm|
-  puts hm.name
+  puts "#{hm.name} in #{hm.city}\n Price: #{hm.price} a night"
 end
 
 #another cool way to block: homes.each { |hm| puts hm.name  }
