@@ -41,12 +41,12 @@ name = nil
 city = nil
 capacity = 0
 price = 0
+option = "0"
 
-menu
-
-unless option == "7"
-    $option = gets.chomp
-    case $option
+until option == "7" do
+    menu
+    option = gets.chomp
+    case option
     when "1"
         puts "Name? "
         name = gets.chomp.downcase
@@ -68,11 +68,36 @@ unless option == "7"
     when "2"
         system("clear")
         homes.each do |hm|
-            puts "#{hm.name} #{hm.city} #{hm.capacity} #{hm.price}"
+            puts "Name: #{hm.name.capitalize} City: #{hm.city.capitalize} Capacity: #{hm.capacity} Price: #{hm.price}€"
         end
+        puts "Press any key to Menu"
+        key = gets
     when "3"
-        puts "Option 3"
-    when "4"
+        sorted_homes = []
+        puts "Sort by price (p) or by capacity (c)? "
+        sort_option = gets.chomp
+        p = false
+        c = false
+        until p == true || c == true
+            if sort_option == "p"
+                p = true
+                sorted_homes = homes.sort do |hm, hm1|
+                    hm.price <=> hm1.price
+                end
+                sorted_homes.each {|hm| puts "Name: #{hm.name.capitalize} City: #{hm.city.capitalize} Capacity: #{hm.capacity} Price: #{hm.price}€"}
+            elsif sort_option == "c"
+                c = true
+                sorted_homes = homes.sort do |hm, hm1|
+                    hm.capacity <=> hm1.capacity
+                end
+                sorted_homes.each {|hm| puts "Name: #{hm.name.capitalize} City: #{hm.city.capitalize} Capacity: #{hm.capacity} Price: #{hm.price}€"}
+            else
+                puts "Wrong option!"
+            end
+        end
+        puts "Press any key to Menu"
+        key = gets
+    when "4" #filter by city
         puts "Enter city: "
         city_tmp = gets.chomp.downcase
         city_homes = []
@@ -80,17 +105,37 @@ unless option == "7"
             hm.city == city_tmp
         end
         city_homes.each do |hm|
-            puts "       HOME                CITY             Capacity      PRICE"
-            puts "#{name.capitalize}   #{city.capitalize}   #{capacity}   #{price}"
+            puts "Name: #{name.capitalize} City: #{city.capitalize} Capacity: #{capacity} Price: #{price}€"
         end
-    when "5"
-        puts "Option 5"
-    when "6"
-        puts "Option 6"
+        puts "Press any key to Menu"
+        key = gets
+    when "5" #calculates average home price
+        sum_price = 0.0
+        avg_price = 0.0
+        sum_price = homes.reduce(0.0) do |sum, hm|
+            sum + hm.price
+        end
+        avg_price = sum_price / homes.length
+        puts "All homes average price: #{avg_price}€\n"
+        puts "Press any key to Menu"
+        key = gets
+    when "6" #finds a home with the specified price
+        home_price = 0
+        price_homes = []
+        puts "Enter desired price: "
+        home_price = gets.to_i
+        price_homes = homes.find do |hm|
+            hm.price == home_price
+        end
+        price_homes.each do |hm|
+            puts "Name: #{name.capitalize} City: #{city.capitalize} Capacity: #{capacity} Price: #{price}€"
+        end
+        puts "Press any key to Menu"
+        key = gets
     when "7"
         system("clear")
+        puts "Thanks using HackBnB"
     else
         puts "Wrong selection! Press any key to continue."
-        key = gets.chomp
     end
 end
