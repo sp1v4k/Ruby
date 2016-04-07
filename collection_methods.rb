@@ -1,4 +1,4 @@
-class Home
+llclass Home
   attr_reader :name, :city, :capacity, :price
 
   def initialize(name, city, capacity, price)
@@ -82,19 +82,22 @@ homes =[
 #  puts "#{hm.name} in #{hm.city}\n Price: #{hm.price} a night"
 #end
 
-#reduce method: takes an array and return a single value
+#reduce method: takes an array and return a single value. Block takes two parameters: accumulator and the item in the array.
 #now with out reduce
 
-total_capacity = 0.0
+#total_capacity = 0.0
+#
+#homes.each do |hm|
+#  total_capacity = total_capacity + hm.capacity
+#end
+#
+#puts total_capacity / homes.length
+#
+#total_capacity = homes.reduce(0.0) do |sum, hm|
+#  sum + hm.capacity
+#end
+#
+#puts total_capacity / homes.length
 
-homes.each do |hm|
-  total_capacity = total_capacity + hm.capacity
-end
 
-puts total_capacity / homes.length
-
-total_capacity = homes.reduce(0.0) do |sum, hm|
-  sum + hm.capacity
-end
-
-puts total_capacity / homes.length 
+#EXCERCISE START HERE
